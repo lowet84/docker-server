@@ -14,9 +14,9 @@ services:
     networks:
       - core
 
-  public:
+  ptraefik:
     image: public-traefik
-    build: ./docker/traefik/
+    build: ./core-apps/traefik/
     restart: always
     ports:
       - 80:80
@@ -35,10 +35,11 @@ services:
 
   oauth2proxy:
     image: oauth2proxy
-    build: ./docker/oauth2proxy/
+    build: ./core-apps/oauth2proxy/
     command: --cookie-secure=false --upstream="http://traefik:80" --http-address="0.0.0.0:4180" --redirect-url="https://portal.${SERVER_DOMAIN}/oauth2/callback" --email-domain="gmail.com"
     labels:
       - traefik.enable=false
+    env_file: ./.env
     networks:
       - core
 
