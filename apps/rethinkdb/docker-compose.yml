@@ -1,0 +1,21 @@
+version: '3'
+services:
+  rethinkdb:
+    image: rethinkdb
+    ports:
+      - 28015:28015
+    restart: always
+    command: rethinkdb --bind all
+    labels:
+      - traefik.backend=rethinkdb
+      - traefik.frontend.passHostHeader=true
+      - traefik.port=8080
+      - traefik.frontend.rule=Host:rethinkdb.${SERVER_DOMAIN}
+    volumes:
+      - ${SETTINGS_PATH}/rethinkdb:/data
+    networks:
+      - core
+
+networks:
+  core:
+    external: true

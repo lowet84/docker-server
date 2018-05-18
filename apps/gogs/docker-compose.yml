@@ -1,0 +1,19 @@
+version: '3'
+services:
+  gogs:
+    image: gogs/gogs
+    restart: always
+    volumes:
+      - ${SETTINGS_PATH}/gogs:/data
+    networks:
+      - core
+    labels:
+      - traefik.enable=true
+      - traefik.backend=gogs
+      - traefik.frontend.passHostHeader=true
+      - traefik.port=3000
+      - traefik.frontend.rule=Host:gogs.${SERVER_DOMAIN}
+
+networks:
+  core:
+    external: true
