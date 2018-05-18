@@ -1,0 +1,62 @@
+version: '3'
+services:
+  traefik:
+    image: traefik:1.6.1-alpine
+    restart: always
+    labels:
+      - traefik.backend=traefik
+      - traefik.frontend.passHostHeader=true
+      - traefik.port=8080
+      - traefik.frontend.rule=Host:traefik.${SERVER_DOMAIN}
+    command: --web --logLevel=DEBUG --docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - core
+
+  public:
+    image: public-traefik
+    build: ./docker/traefik/
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    labels:
+      - traefik.backend=public
+      - traefik.frontend.passHostHeader=true
+      - traefik.port=8080
+      - traefik.frontend.rule=Host:ptraefik.${SERVER_DOMAIN}
+    command: --web --logLevel=DEBUG --configfile=/toml/traefik-public.toml --docker.exposedbydefault=false
+    volumes:
+      - ${SETTINGS_PATH}/traefik:/config
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - core
+
+  oauth2proxy:
+    image: oauth2proxy
+    build: ./docker/oauth2proxy/
+    command: --cookie-secure=false --upstream="http://traefik:80" --http-address="0.0.0.0:4180" --redirect-url="https://portal.${SERVER_DOMAIN}/oauth2/callback" --email-domain="gmail.com"
+    labels:
+      - traefik.enable=false
+    networks:
+      - core
+
+  portainer:
+    image: portainer/portainer
+    restart: always
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
+     - ${SETTINGS_PATH}/portainer:/data
+    command: --no-auth
+    labels:
+      - traefik.backend=portainer
+      - traefik.frontend.passHostHeader=true
+      - traefik.port=9000
+      - traefik.frontend.rule=Host:portainer.${SERVER_DOMAIN}
+    networks:
+      - core
+
+networks:
+  core:
+    external: true
