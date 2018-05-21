@@ -1,0 +1,24 @@
+version: '3'
+services:
+  registry:
+    image: registry
+    restart: always
+    command: 
+    environment:
+      - REGISTRY_AUTH=htpasswd
+      - REGISTRY_AUTH_HTPASSWD_REALM="Registry Realm"
+      - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd
+    labels:
+      - traefik.backend=registry
+      - traefik.frontend.passHostHeader=true
+      - traefik.port=5000
+      - traefik.frontend.rule=Host:registry.${SERVER_DOMAIN}
+    volumes:
+      - ${SETTINGS_PATH}/registry/data:/var/lib/registry
+      - ${SETTINGS_PATH}/registry/auth:/auth
+    networks:
+      - core
+
+networks:
+  core:
+    external: true
