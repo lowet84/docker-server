@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  plex:
+    image: linuxserver/plex
+    ports:
+     - 32400:32400
+    environment:
+     - PUID=0
+     - GUID=0
+     - TZ=SE
+    restart: always
+    network_mode: "host"
+    volumes:
+      - ${SETTINGS_PATH}/plex:/config
+      - ${RAR2FS_PATH}:/data
+      - ${FILES_PATH}:/files
