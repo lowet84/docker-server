@@ -21,6 +21,8 @@ email = "fredriklowenhamn@gmail.com" #Change this to your email
 storage = "/config/acme-public.json"
 entryPoint = "https"
 onDemand = true
+#onHostRule = true
+#caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
 
 [acme.httpChallenge]
 entryPoint = "http"

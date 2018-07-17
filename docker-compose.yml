@@ -1,7 +1,7 @@
 version: '3'
 services:
   traefik:
-    image: traefik:1.6.1-alpine
+    image: traefik:1.7-alpine
     restart: always
     labels:
       - traefik.backend=traefik
@@ -19,8 +19,8 @@ services:
     build: ./core-apps/traefik/
     restart: always
     ports:
-      - 80:80
-      - 443:443
+      - ${PORT80}:80
+      - ${PORT443}:443
     labels:
       - traefik.backend=public
       - traefik.frontend.passHostHeader=true
