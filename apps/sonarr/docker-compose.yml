@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  sonarr:
+    image: linuxserver/sonarr
+    volumes:
+     - /dev/rtc:/dev/rtc:ro
+     - ${SETTINGS_PATH}/sonarr:/config
+     - ${RAR2FS_PATH}/Downloads:/data/Downloads
+     - ${RAR2FS_PATH}/TV:/data/TV
+     - ${RAR2FS_PATH}/TVCharlotte:/data/TVCharlotte
+     - ${FILES_PATH}/Anime:/data/Anime
+    restart: always
+    networks:
+      - core
+    environment:
+     - PUID=0
+     - GUID=0 
+    labels:
+      - traefik.backend=sonarr
+      - traefik.frontend.passHostHeader=true
+      - traefik.port=8989
+      - traefik.frontend.rule=Host:sonarr.${SERVER_DOMAIN}
+
+networks:
+  core:
+    external: true

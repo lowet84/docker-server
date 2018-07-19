@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  radarr:
+    image: linuxserver/radarr
+    volumes:
+     - /dev/rtc:/dev/rtc:ro
+     - ${SETTINGS_PATH}/radarr:/config
+     - ${RAR2FS_PATH}/Downloads:/data/Downloads
+     - ${RAR2FS_PATH}/Film:/data/Film
+    restart: always
+    networks:
+      - core
+    environment:
+     - PUID=0
+     - GUID=0
+    labels:
+      - traefik.backend=radarr
+      - traefik.frontend.passHostHeader=true
+      - traefik.port=7878
+      - traefik.frontend.rule=Host:radarr.${SERVER_DOMAIN}
+
+networks:
+  core:
+    external: true

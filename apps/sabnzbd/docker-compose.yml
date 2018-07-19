@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  sabnzbd:
+    image: linuxserver/sabnzbd
+    volumes:
+      - ${FILES_PATH}/Downloads:/data/Downloads
+      - ${FILES_PATH}/Film:/data/Film
+      - ${FILES_PATH}/Books:/data/Books
+      - ${SETTINGS_PATH}/sabnzbd:/config
+    restart: always
+    networks:
+      - core
+    environment:
+     - PUID=0
+     - PGID=0
+    labels:
+      - traefik.backend=sabnzbd 
+      - traefik.frontend.passHostHeader=true
+      - traefik.port=8080
+      - traefik.frontend.rule=Host:sabnzbd.${SERVER_DOMAIN}
+
+networks:
+  core:
+    external: true
