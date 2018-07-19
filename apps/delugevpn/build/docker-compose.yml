@@ -1,0 +1,17 @@
+version: '3'
+services:
+  delugevpn:
+    build: .
+    image: build_delugevpn
+    ports:
+      - 8112:8112
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - /mnt/filer/Settings/delugevpn/vpn:/etc/openvpn
+      - /mnt/filer/Settings/delugevpn/deluge:/config
+    devices:
+      - /dev/net/tun
+    environment:
+      - LAN_NETWORK=192.168.2.0/24
+      - NAME_SERVERS=46.246.46.46,194.132.32.23

@@ -3,6 +3,8 @@ services:
   traefik:
     image: traefik:1.7-alpine
     restart: always
+    ports:
+      - 80:80
     labels:
       - traefik.backend=traefik
       - traefik.frontend.passHostHeader=true

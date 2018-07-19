@@ -1,0 +1,31 @@
+version: '3.4'
+services:
+  delugevpn:
+    image: delugevpn
+    build: build
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ${SETTINGS_PATH}/delugevpn/vpn:/etc/openvpn
+      - ${SETTINGS_PATH}/delugevpn/deluge:/config
+      - ${FILES_PATH}:/data
+    devices:
+      - /dev/net/tun
+    labels:
+      - traefik.backend=delugevpn
+      - traefik.frontend.passHostHeader=true
+      - traefik.port=8112
+      - traefik.frontend.rule=Host:delugevpn.${SERVER_DOMAIN}
+    healthcheck:
+      test: ["CMD", "sh", "/health.sh"]
+      interval: 1m
+      timeout: 30s
+      retries: 3
+      start_period: 30s
+    networks:
+      - core
+
+networks:
+  core:
+    external: true    
+
