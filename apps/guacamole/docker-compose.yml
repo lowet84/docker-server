@@ -1,0 +1,61 @@
+version: '3'
+services:
+  mysql:
+    image: mysql
+    restart: always
+    volumes:
+      - ${SETTINGS_PATH}/guacamole:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: gurkburk
+    networks:
+      - guacamole
+    labels:
+      - traefik.enable=false
+
+  mysql-init:
+    image: lowet84/mysql-guacamole-init
+    build: init/
+    volumes:
+     - ${SETTINGS_PATH}/guacamole:/data
+    environment:
+      PASSWORD: gurkburk
+    networks:
+      - guacamole
+    labels:
+      - traefik.enable=false
+
+  guacd:
+    image: glyptodon/guacd
+    restart: always
+    networks:
+      - guacamole
+    labels:
+      - traefik.enable=false
+
+  guacamole:
+    image: guacamole
+    build: guacamole/
+    restart: always
+    networks:
+      - guacamole
+      - core
+    environment:
+      GUACD_HOSTNAME: guacd
+      MYSQL_DATABASE: guacamole_db
+      MYSQL_USER: guacamole_user
+      MYSQL_PASSWORD: guacamole_password
+      MYSQL_HOSTNAME: mysql
+      GUACD_PORT_4822_TCP_ADDR: guacd
+      GUACD_PORT_4822_TCP_PORT: 4822
+    labels:
+      - traefik.enable=true
+      - traefik.backend=guacamole
+      - traefik.frontend.passHostHeader=true
+      - traefik.port=8080
+      - traefik.frontend.rule=Host:guacamole.${SERVER_DOMAIN},lowethome.duckdns.org
+      - traefik.docker.network=core
+
+networks:
+  guacamole:
+  core:
+    external: true
