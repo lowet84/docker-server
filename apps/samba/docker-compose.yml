@@ -1,0 +1,11 @@
+version: '3'
+services:
+  samba:
+    build: build
+    image: lowet84/samba
+    network_mode: "host"
+    restart: always
+    command: sh start.sh
+    volumes:
+      - ${SETTINGS_PATH}/samba/smb.conf:/etc/samba/smb.conf
+      - ${FILES_PATH}:/data
