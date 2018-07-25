@@ -1,0 +1,20 @@
+version: '3'
+services:
+  nodered:
+    image: nodered/node-red-docker:slim
+    restart: always
+    volumes:
+      - ${SETTINGS_PATH}/nodered:/data
+    user: root
+    networks:
+      - core
+    labels:
+#      - traefik.enable=true
+      - traefik.backend=nodered
+      - traefik.frontend.passHostHeader=true
+      - traefik.port=1880
+      - traefik.frontend.rule=Host:nodered.${SERVER_DOMAIN}
+
+networks:
+  core:
+    external: true
