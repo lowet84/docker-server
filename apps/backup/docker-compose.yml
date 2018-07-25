@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  backup:
+    build: .
+    volumes:
+      - ${SETTINGS_PATH}:/settings
+      - ${BACKUP_PATH}:/backup
+    network_mode: none
