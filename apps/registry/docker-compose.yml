@@ -9,10 +9,8 @@ services:
       - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd
     labels:
       - traefik.enable=true
-      - traefik.backend=registry
-      - traefik.frontend.passHostHeader=true
       - traefik.port=5000
-      - traefik.frontend.rule=Host:drone.${SERVER_DOMAIN}
+      - traefik.frontend.rule=Host:registry.${SERVER_DOMAIN}
     volumes:
       - ${SETTINGS_PATH}/registry/data:/var/lib/registry
       - ${SETTINGS_PATH}/registry/auth:/auth

@@ -15,8 +15,6 @@ services:
      - PUID=0
      - PGID=0
     labels:
-      - traefik.backend=sabnzbd 
-      - traefik.frontend.passHostHeader=true
       - traefik.port=8080
       - traefik.frontend.rule=Host:sabnzbd.${SERVER_DOMAIN}
 

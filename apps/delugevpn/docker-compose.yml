@@ -13,8 +13,6 @@ services:
     devices:
       - /dev/net/tun
     labels:
-      - traefik.backend=delugevpn
-      - traefik.frontend.passHostHeader=true
       - traefik.port=8112
       - traefik.frontend.rule=Host:delugevpn.${SERVER_DOMAIN}
     healthcheck:

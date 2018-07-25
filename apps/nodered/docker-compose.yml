@@ -10,8 +10,6 @@ services:
       - core
     labels:
 #      - traefik.enable=true
-      - traefik.backend=nodered
-      - traefik.frontend.passHostHeader=true
       - traefik.port=1880
       - traefik.frontend.rule=Host:nodered.${SERVER_DOMAIN}
 

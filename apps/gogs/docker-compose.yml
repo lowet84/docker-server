@@ -9,8 +9,6 @@ services:
       - core
     labels:
       - traefik.enable=true
-      - traefik.backend=gogs
-      - traefik.frontend.passHostHeader=true
       - traefik.port=3000
       - traefik.frontend.rule=Host:gogs.${SERVER_DOMAIN}
 

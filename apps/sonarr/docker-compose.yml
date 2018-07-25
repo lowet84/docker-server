@@ -17,8 +17,6 @@ services:
      - PUID=0
      - GUID=0 
     labels:
-      - traefik.backend=sonarr
-      - traefik.frontend.passHostHeader=true
       - traefik.port=8989
       - traefik.frontend.rule=Host:sonarr.${SERVER_DOMAIN}
 
