@@ -6,8 +6,6 @@ services:
     ports:
       - 80:80
     labels:
-      - traefik.backend=traefik
-      - traefik.frontend.passHostHeader=true
       - traefik.port=8080
       - traefik.frontend.rule=Host:traefik.${SERVER_DOMAIN}
     command: --web --logLevel=DEBUG --docker
@@ -24,8 +22,6 @@ services:
       - ${PORT80}:80
       - ${PORT443}:443
     labels:
-      - traefik.backend=public
-      - traefik.frontend.passHostHeader=true
       - traefik.port=8080
       - traefik.frontend.rule=Host:ptraefik.${SERVER_DOMAIN}
     command: --web --logLevel=DEBUG --configfile=/toml/traefik-public.toml --docker.exposedbydefault=false
@@ -54,8 +50,6 @@ services:
      - ${SETTINGS_PATH}/portainer:/data
     command: --no-auth
     labels:
-      - traefik.backend=portainer
-      - traefik.frontend.passHostHeader=true
       - traefik.port=9000
       - traefik.frontend.rule=Host:portainer.${SERVER_DOMAIN}
     networks:
