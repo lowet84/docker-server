@@ -3,6 +3,7 @@ services:
   delugevpn:
     image: delugevpn
     build: build
+    restart: always
     cap_add:
       - NET_ADMIN
     volumes:
