@@ -1,0 +1,14 @@
+version: '3'
+services:
+  nodered:
+    image: lowet84/traefik-portal
+    restart: always
+    networks:
+      - core
+    labels:
+      - traefik.port=3000
+      - traefik.frontend.rule=Host:portal.${SERVER_DOMAIN}
+
+networks:
+  core:
+    external: true
