@@ -8,6 +8,8 @@ services:
     labels:
       - traefik.port=3000
       - traefik.frontend.rule=Host:portal.${SERVER_DOMAIN}
+    environment:
+      - TRAEFIK=http://traefik.${SERVER_DOMAIN}
 
 networks:
   core:
