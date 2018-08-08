@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  jackett:
+    image: linuxserver/jackett
+    volumes:
+      - ${SETTINGS_PATH}/jackett:/config
+    restart: always
+    networks:
+      - core
+    environment:
+     - PUID=0
+     - PGID=0
+     - TZ=se
+    labels:
+      - traefik.port=9117
+      - traefik.frontend.rule=Host:jackett.${SERVER_DOMAIN}
+
+networks:
+  core:
+    external: true
