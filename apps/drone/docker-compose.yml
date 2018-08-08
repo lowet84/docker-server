@@ -10,7 +10,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.port=8000
-      - traefik.frontend.rule=Host:drone.${SERVER_DOMAIN},lowetdrone.duckdns.org
+      - traefik.frontend.rule=Host:drone.${SERVER_DOMAIN}
       - traefik.docker.network=core
     networks:
       - drone

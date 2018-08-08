@@ -10,7 +10,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.port=3000
-      - traefik.frontend.rule=Host:gogs.${SERVER_DOMAIN},lowetgogs.duckdns.org
+      - traefik.frontend.rule=Host:gogs.${SERVER_DOMAIN}
 
 networks:
   core:

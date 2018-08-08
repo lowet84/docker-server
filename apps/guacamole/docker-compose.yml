@@ -50,7 +50,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.port=8080
-      - traefik.frontend.rule=Host:guacamole.${SERVER_DOMAIN},lowethome.duckdns.org
+      - traefik.frontend.rule=Host:guacamole.${SERVER_DOMAIN}
       - traefik.docker.network=core
 
 networks:
