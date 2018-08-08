@@ -1,0 +1,17 @@
+version: '3'
+services:
+  template:
+    image: lowet84/rekyl-template
+    restart: always
+    networks:
+      - core
+    labels:
+      - traefik.enable=true
+      - traefik.port=7000
+      - traefik.frontend.rule=Host:template.${SERVER_DOMAIN}
+    environment:
+      - DATABASE=rethinkdb
+
+networks:
+  core:
+    external: true

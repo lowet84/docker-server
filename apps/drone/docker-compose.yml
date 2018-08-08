@@ -1,0 +1,37 @@
+version: '3'
+services:
+  drone-server:
+    image: drone/drone:0.8.1
+    restart: always
+    env_file: 
+      - ${SETTINGS_PATH}/drone/secrets.env
+    volumes:
+      - ${SETTINGS_PATH}/drone:/var/lib/drone/
+    labels:
+      - traefik.enable=true
+      - traefik.port=8000
+      - traefik.frontend.rule=Host:drone.${SERVER_DOMAIN},lowetdrone.duckdns.org
+      - traefik.docker.network=core
+    networks:
+      - drone
+      - core
+
+  drone-agent:
+    image: drone/agent:0.8.1
+    command: agent
+    restart: always
+    depends_on: [ drone-server  ]
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - DRONE_SERVER=drone-server:9000
+    env_file: ${SETTINGS_PATH}/drone/secrets.env
+    networks:
+      - drone
+    labels:      
+      - traefik.enable=false
+
+networks:
+  drone:
+  core:
+    external: true
