@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  nexus:
+    image: sonatype/nexus3
+    restart: always
+    volumes:
+      - ${SETTINGS_PATH}/nexus:/nexus-data:rw
+    labels:
+      - traefik.nexus.port=8081
+      - traefik.nexus.frontend.rule=Host:nexus.${SERVER_DOMAIN}
+      - traefik.docker.port=9000
+      - traefik.enable=true
+      - traefik.docker.frontend.rule=Host:docker.${SERVER_DOMAIN}
+    networks:
+      - core
+
+networks:
+  core:
+    external: true
