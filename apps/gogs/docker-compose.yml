@@ -5,12 +5,21 @@ services:
     restart: always
     volumes:
       - ${SETTINGS_PATH}/gogs:/data
+      - ${BACKUP_PATH}:/backup
     networks:
       - core
     labels:
       - traefik.enable=true
       - traefik.port=3000
       - traefik.frontend.rule=Host:gogs.${SERVER_DOMAIN}
+
+  gogs-backup:
+    image: gogs-backup
+    build: backup
+    volumes:
+      - ${SETTINGS_PATH}/gogs/backup:/config
+      - ${BACKUP_PATH}:/backup
+      - /var/run/docker.sock:/var/run/docker.sock
 
 networks:
   core:
