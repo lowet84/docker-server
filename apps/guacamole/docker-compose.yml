@@ -1,6 +1,7 @@
 version: '3'
 services:
   mysql:
+    container_name: guacamole-mysql
     image: mysql
     restart: always
     volumes:
@@ -13,6 +14,7 @@ services:
       - traefik.enable=false
 
   mysql-init:
+    container_name: guacamole-mysql-init
     image: lowet84/mysql-guacamole-init
     build: init/
     volumes:
@@ -25,6 +27,7 @@ services:
       - traefik.enable=false
 
   guacd:
+    container_name: guacd
     image: glyptodon/guacd
     restart: always
     networks:
@@ -33,6 +36,7 @@ services:
       - traefik.enable=false
 
   guacamole:
+    container_name: guacamole
     image: guacamole
     build: guacamole/
     restart: always

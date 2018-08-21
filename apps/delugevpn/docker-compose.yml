@@ -1,6 +1,7 @@
 version: '3.4'
 services:
   delugevpn:
+    container_name: delugevpn
     image: delugevpn
     build: build
     restart: always

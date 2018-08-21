@@ -1,6 +1,7 @@
 version: '3'
 services:
   gogs:
+    container_name: gogs
     image: gogs/gogs
     restart: always
     volumes:
@@ -14,6 +15,7 @@ services:
       - traefik.frontend.rule=Host:gogs.${SERVER_DOMAIN}
 
   gogs-backup:
+    container_name: gogs-backup
     image: gogs-backup
     build: backup
     restart: always

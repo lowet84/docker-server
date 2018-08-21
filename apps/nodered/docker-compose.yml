@@ -1,6 +1,7 @@
 version: '3'
 services:
   nodered:
+    container_name: nodered
     image: nodered/node-red-docker:slim
     restart: always
     volumes:

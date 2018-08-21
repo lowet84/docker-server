@@ -2,6 +2,7 @@ version: '3'
 
 services:
   jackett:
+    container_name: jackett
     image: linuxserver/jackett
     volumes:
       - ${SETTINGS_PATH}/jackett:/config

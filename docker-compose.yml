@@ -1,6 +1,7 @@
 version: '3'
 services:
   traefik:
+    container_name: traefik
     image: traefik:1.7-alpine
     restart: always
     ports:
@@ -15,6 +16,7 @@ services:
       - core
 
   ptraefik:
+    container_name: ptraefik
     image: public-traefik
     build: ./core-apps/traefik/
     restart: always
@@ -32,6 +34,7 @@ services:
       - core
 
   oauth2proxy:
+    container_name: oauth2proxy
     image: oauth2proxy
     build: ./core-apps/oauth2proxy/
     command: --cookie-secure=false --upstream="http://traefik:80" --http-address="0.0.0.0:4180" --redirect-url="https://portal.${SERVER_DOMAIN}/oauth2/callback" --email-domain="gmail.com"
@@ -43,6 +46,7 @@ services:
       - core
 
   portainer:
+    container_name: portainer
     image: portainer/portainer
     restart: always
     volumes:
