@@ -2,6 +2,7 @@ version: '3'
 
 services:
   plex:
+    container_name: plex
     image: linuxserver/plex
     ports:
      - 32400:32400

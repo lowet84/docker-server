@@ -1,6 +1,7 @@
 version: '3'
 services:
   rethinkdb:
+    container_name: rethinkdb
     image: rethinkdb
     ports:
       - 28015:28015

@@ -1,6 +1,7 @@
 version: '3'
 services:
   portal:
+    container_name: portal
     image: lowet84/traefik-portal
     restart: always
     networks:

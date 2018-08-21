@@ -2,6 +2,7 @@ version: '3'
 
 services:
   sabnzbd:
+    container_name: sabnzbd
     image: linuxserver/sabnzbd
     volumes:
       - ${FILES_PATH}/Downloads:/data/Downloads

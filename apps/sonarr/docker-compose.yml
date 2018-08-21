@@ -2,6 +2,7 @@ version: '3'
 
 services:
   sonarr:
+    container_name: sonarr
     image: linuxserver/sonarr
     volumes:
      - /dev/rtc:/dev/rtc:ro

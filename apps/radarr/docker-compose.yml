@@ -2,6 +2,7 @@ version: '3'
 
 services:
   radarr:
+    container_name: radarr
     image: linuxserver/radarr
     volumes:
      - /dev/rtc:/dev/rtc:ro

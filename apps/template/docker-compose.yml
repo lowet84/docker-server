@@ -1,6 +1,7 @@
 version: '3'
 services:
   template:
+    container_name: template
     image: lowet84/rekyl-template
     restart: always
     networks:
