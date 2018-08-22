@@ -1,6 +1,6 @@
 #!/bin/bash
 while true; do 
-  docker exec -i gogs_gogs_1 sh -c 'cd .. && USER=git ./gogs backup --target /backup/'
+  docker exec -i gogs sh -c 'cd .. && USER=git ./gogs backup --target /backup/'
 
   PARENT=$(gdrive list -q "name contains 'GogsBackup'" --no-header | cut -d" " -f 1)
   FILE=$(ls -tr /backup | grep gogs | tail -1 )
