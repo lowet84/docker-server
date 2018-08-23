@@ -1,4 +1,6 @@
-watchtower:
+version: '3'
+services:
+  watchtower:
     container_name: watchtower
     image: v2tec/watchtower
     restart: always
@@ -10,3 +12,7 @@ watchtower:
       - ${DOCKER_CONFIG}:/config.json
     networks:
       - core
+
+networks:
+  core:
+    external: true
