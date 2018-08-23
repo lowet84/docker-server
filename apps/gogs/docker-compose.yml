@@ -19,6 +19,8 @@ services:
     image: gogs-backup
     build: backup
     restart: always
+    networks:
+      - core
     volumes:
       - ${SETTINGS_PATH}/gogs/backup:/config
       - ${BACKUP_PATH}:/backup
