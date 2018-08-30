@@ -37,7 +37,9 @@ services:
     container_name: oauth2proxy
     image: oauth2proxy
     build: ./core-apps/oauth2proxy/
-    command: --cookie-secure=false --upstream="http://traefik:80" --http-address="0.0.0.0:4180" --redirect-url="https://portal.${SERVER_DOMAIN}/oauth2/callback" --email-domain="gmail.com"
+    command: --cookie-secure=false --upstream="http://traefik:80" --http-address="0.0.0.0:4180" --redirect-url="https://portal.${SERVER_DOMAIN}/oauth2/callback" --authenticated-emails-file=/auth/emails
+    volumes:
+      - ${SETTINGS_PATH}/oauth2proxy:/auth
     labels:
       - traefik.enable=false
     env_file: ./.env
