@@ -1,0 +1,16 @@
+version: '3'
+services:
+  template:
+    container_name: simple-resume
+    image: lowet84/simple-resume
+    restart: always
+    networks:
+      - core
+    labels:
+      - traefik.enable=true
+      - traefik.port=8043
+      - traefik.frontend.rule=Host:${SERVER_DOMAIN}
+
+networks:
+  core:
+    external: true
