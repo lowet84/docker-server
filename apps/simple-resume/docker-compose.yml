@@ -3,6 +3,7 @@ services:
   template:
     container_name: simple-resume
     image: lowet84/simple-resume
+    build: .
     restart: always
     networks:
       - core
