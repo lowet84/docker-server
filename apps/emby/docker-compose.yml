@@ -1,0 +1,26 @@
+version: '3'
+services:
+  emby:
+    container_name: emby
+    image: emby/embyserver
+    restart: always
+    volumes:
+      - ${SETTINGS_PATH}/emby:/config
+      - ${RAR2FS_PATH}:/data
+      - ${FILES_PATH}:/files
+    devices:
+      - /dev/dri/renderD128
+    environment:
+      - UID=1000
+      - GID=100
+      - GIDLIST=100
+    networks:
+      - core
+    labels:
+      - traefik.enable=true
+      - traefik.port=8096
+      - traefik.frontend.rule=Host:emby.${SERVER_DOMAIN}
+
+networks:
+  core:
+    external: true
