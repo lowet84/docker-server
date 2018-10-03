@@ -1,13 +1,14 @@
 version: '3'
 services:
-  mysql:
+  guacamole-mysql:
     container_name: guacamole-mysql
-    image: mysql
+    image: mysql:5.7
     restart: always
     volumes:
       - ${SETTINGS_PATH}/guacamole:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: gurkburk
+      - MYSQL_ROOT_PASSWORD=gurkburk
+      - MYSQL_ROOT_HOST=%
     networks:
       - guacamole
     labels:
@@ -48,7 +49,7 @@ services:
       MYSQL_DATABASE: guacamole_db
       MYSQL_USER: guacamole_user
       MYSQL_PASSWORD: guacamole_password
-      MYSQL_HOSTNAME: mysql
+      MYSQL_HOSTNAME: guacamole-mysql
       GUACD_PORT_4822_TCP_ADDR: guacd
       GUACD_PORT_4822_TCP_PORT: 4822
     labels:

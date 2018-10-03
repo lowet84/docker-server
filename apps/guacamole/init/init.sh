@@ -4,7 +4,7 @@ if [ ! -f "/data/initialized" ]; then
   echo "Initializing guacamole database"
   GO=1
   while true; do
-    mysql -h mysql -u root -p$PASSWORD < /init.sql
+    mysql -h guacamole-mysql -u root -p$PASSWORD < /init.sql
     if [ $? -eq 0 ]; then
       echo "Database initialized"
       break
