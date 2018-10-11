@@ -1,5 +1,5 @@
 FROM alpine as wget
-ENV USER=UmVzdW1lOlNBUTZENkZO
+ENV USER=UmVzdW1lOlc0TlhLOUFO
 
 RUN apk add --no-cache unzip wget
 RUN wget https://resume.fredriklowenhamn.se/export/$USER -O resume.zip
