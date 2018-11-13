@@ -38,7 +38,7 @@ services:
 
   guacamole:
     container_name: guacamole
-    image: guacamole
+#    image: guacamole
     build: guacamole/
     restart: always
     networks:
