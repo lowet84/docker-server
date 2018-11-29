@@ -1,0 +1,18 @@
+version: '3'
+services:
+  ravendb:
+    container_name: ravendb
+    image: ravendb/ravendb
+    restart: always
+    labels:
+      - traefik.port=8080
+      - traefik.frontend.rule=Host:ravendb.${SERVER_DOMAIN}
+    volumes:
+      - ${SETTINGS_PATH}/ravendb/data:/opt/RavenDB/Server/RavenData
+      - ${SETTINGS_PATH}/ravendb/config:/opt/RavenDB/config
+    networks:
+      - core
+
+networks:
+  core:
+    external: true
