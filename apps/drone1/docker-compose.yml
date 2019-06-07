@@ -1,0 +1,25 @@
+version: '3'
+services:
+  drone:
+    container_name: drone
+    image: drone/drone:1.2.0
+    restart: always
+    volumes:
+      - ${SETTINGS_PATH}/drone1:/var/lib/drone/ 
+    labels:
+      - traefik.enable=true
+      - traefik.port=80
+      - traefik.frontend.rule=Host:drone.${SERVER_DOMAIN}
+    environment:
+      - DRONE_GIT_ALWAYS_AUTH=false
+      - DRONE_GOGS_SERVER=http://gogs:3000
+      - DRONE_RUNNER_CAPACITY=2
+      - DRONE_SERVER_HOST=drone.${SERVER_DOMAIN}
+      - DRONE_SERVER_PROTO=http
+      - DRONE_TLS_AUTOCERT=false
+    networks:
+      - core
+
+networks:
+  core:
+    external: true
