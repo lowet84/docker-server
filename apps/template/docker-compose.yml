@@ -2,16 +2,17 @@ version: '3'
 services:
   template:
     container_name: template
-    image: lowet84/rekyl-template
+    image: docker.fredriklowenhamn.se/template
     restart: always
     networks:
       - core
     labels:
       - traefik.enable=true
-      - traefik.port=7000
+      - traefik.port=3000
       - traefik.frontend.rule=Host:template.${SERVER_DOMAIN}
+      - com.centurylinklabs.watchtower.enable=true
     environment:
-      - DATABASE=rethinkdb
+      - DB_HOST=rethinkdb
 
 networks:
   core:

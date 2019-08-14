@@ -1,0 +1,18 @@
+version: '3'
+services:
+  cluster-fix:
+    container_name: cluster-fix
+    build: .
+    restart: always
+    networks:
+      - core
+    labels:
+      - traefik.enable=true
+      - traefik.port=8080
+      - traefik.frontend.rule=Host:cltraefik.${SERVER_DOMAIN}
+    environment:
+      - CLUSTER_IP=192.168.1.75
+
+networks:
+  core:
+    external: true

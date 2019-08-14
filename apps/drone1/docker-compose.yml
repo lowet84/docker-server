@@ -5,6 +5,7 @@ services:
     image: drone/drone:1.2.0
     restart: always
     volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
       - ${SETTINGS_PATH}/drone1:/var/lib/drone/ 
     labels:
       - traefik.enable=true
@@ -17,6 +18,7 @@ services:
       - DRONE_SERVER_HOST=drone.${SERVER_DOMAIN}
       - DRONE_SERVER_PROTO=http
       - DRONE_TLS_AUTOCERT=false
+      - DRONE_USER_CREATE=username:fredrik,admin:true
     networks:
       - core
 
