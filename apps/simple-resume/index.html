@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Fredrik Löwenhamn - Resume</title>
+    <meta charset="utf-8" name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=2.0, width=device-width">
+    <style>
+        :root {
+  --background-color: rgb(252, 241, 232);
+  --link-color: rgba(78, 67, 58, 0.527);
+  --accent: whitesmoke;
+  --intro-tint: rgba(0, 4, 255, 0.473);
+  --border-color: lightgray;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.down-button {
+  position: absolute;
+  bottom: 2em;
+  right: 2em;
+  width: 15%;
+  z-index: 3;
+  -webkit-filter: invert(100%); /* safari 6.0 - 9.0 */
+  filter: invert(100%);
+  opacity: 0.4;
+}
+
+.intro {
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
+.resume {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.root-part {
+  display: grid;
+  grid-template-columns: 1fr minmax(80%, 600px) 1fr;
+  padding: 2em;
+  padding-top: 3em;
+  padding-bottom: 3em;
+}
+
+.root-item {
+  grid-column: 2;
+}
+
+.root-part:nth-child(odd) {
+  background: var(--background-color);
+}
+
+.root-end {
+  padding-bottom: 5em;
+}
+
+/* Intro */
+
+.intro-root {
+  height: 100vh;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+}
+
+.intro-title-wrapper {
+  grid-row: 2/3;
+  grid-column: 1;
+  z-index: 2;
+  text-align: center;
+  color: var(--accent);
+}
+
+.intro-image-wrapper {
+  grid-row: 1/4;
+  grid-column: 1;
+  z-index: 1;
+  height: 100%;
+  object-fit: cover;
+  width: auto;
+  background: var(--intro-tint);
+  margin-bottom: 1em;
+}
+
+.intro-image {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+  opacity: 0.5;
+}
+
+.intro-subtitle {
+  letter-spacing: 5px;
+  font-size: 9px;
+  text-transform: uppercase;
+}
+
+/* Details */
+
+.details-root {
+  display: flex;
+  flex-direction: column;
+}
+
+.details-padding {
+  margin-top: 1em;
+}
+
+.details-picture-wrapper {
+  text-align: center;
+}
+
+.details-picture {
+  max-width: 190px;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid var(--border-color);
+}
+
+.details-about {
+  text-align: left;
+}
+
+.details-label {
+  text-align: center;
+  margin-bottom: 0.5em;
+}
+
+/* Skills */
+
+.skills-root {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5em;
+  margin-left: 2em;
+}
+
+.skills-title {
+  text-align: center;
+  margin-bottom: 0.5em;
+}
+
+.skills-text {
+  text-align: center;
+}
+
+/* Experiences */
+
+.experience-title {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 0.5em;
+}
+
+.experience-title-item {
+  margin-left: 0.5em;
+  margin-bottom: 0.3em;
+}
+
+.experience-root {
+  text-align: center;
+  margin-bottom: 5em;
+}
+
+.experience-text {
+  text-align: left;
+  margin-bottom: 0.5em;
+}
+
+.experience-item-skill-label {
+  font-style: italic;
+  margin-top: 1em;
+}
+
+/* Contact */
+
+.contact-title {
+  text-align: center;
+  margin-bottom: 0.5em;
+}
+
+.contact-root {
+  text-align: center;
+  margin-bottom: 0.5em;
+  grid-column: 2;
+}
+
+.contact-text {
+  text-align: left;
+}
+
+.contact-part {
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+}
+
+/* Global styling */
+
+*,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  letter-spacing: 2px;
+  font-size: 55px;
+  font-weight: lighter;
+}
+
+h2 {
+  letter-spacing: 2px;
+  font-size: 40px;
+  font-weight: lighter;
+}
+
+h3 {
+  letter-spacing: 2px;
+  font-size: 32px;
+  font-weight: lighter;
+}
+
+h4 {
+  letter-spacing: 2px;
+  font-size: 25px;
+  font-weight: lighter;
+}
+
+h5 {
+  letter-spacing: 2px;
+  font-size: 20px;
+  font-weight: lighter;
+}
+
+h6 {
+  font-weight: normal;
+}
+
+div {
+  font-weight: lighter;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+    </style>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <a href="#profile">
+        <img src="https://www.shareicon.net/download/2015/10/18/658152_arrows.svg" class="down-button">
+    </a>
+    <div class="intro-root">
+        <div class="intro-title-wrapper">
+            <h1>Fredrik Löwenhamn</h1>
+            <div class="intro-subtitle">-Systemutvecklare-</div>
+        </div>
+        <figure class="intro-image-wrapper">
+            <img class="intro-image" src="/intro.jpeg" alt="" />
+        </figure>
+    </div>
+    <div class="root-part" id="profile">
+        <div class="details-root root-item">
+            <h2 class="details-label">Profil</h2>
+            <div class="details-picture-wrapper">
+                <img class="details-picture" src="/profile.jpeg" alt="Profile" />
+                <h4>Fredrik Löwenhamn</h4>
+                <div>
+                    Systemutvecklare med stort intresse för hela utvecklingsprocessen – från kod till deployment<br>Bred teknisk kompetens<br>Driven och nyfiken
+                </div>
+            </div>
+            <div class="details-about details-padding">
+                <h3 class="details-label">Om</h3>
+                <div>
+                    <span style="white-space: pre-wrap;">Fredrik är en engagerad och driven konsult med 7 års erfarenhet av systemutveckling inom .NET/C#, JavaScript och DevOps-tekniker såsom Docker och Kubernetes. Fredrik har erfarenhet av arbete med projekt inom såväl privat som offentlig sektor där han har arbetat med både ny- och vidareutveckling. I rollen som systemutvecklare har Fredrik arbetat med utveckling av webbklienter i JavaScript, DevOps med Azure DevOps, moln-drift med Azure Kubernetes Service, utveckling av serverapplikationer i C# samt desktop-appar i C#/WPF. Han har även erfarenhet av att jobba med agil utveckling och tidsestimering i projekt där kunder ställer höga krav. Utöver sin professionella roll har han även privat ett stort intresse för utveckling och har bland annat arbetat med JavaScript, Vue.js, TypeScript, Docker och Kubernetes. Han har även hållit ett flertal föreläsningar, både internt samt på utvecklarkonferens. 
+
+Fredrik har ett mycket stort intresse för teknik och sätter sig snabbt in i nya miljöer och tekniker. Han är mycket nyfiken och har en stark vilja att lära sig nya tekniker och arbetsmetoder. Med en bakgrund som civilingenjör inom elektroteknik har Fredrik en mycket bred teknisk bas och kan bidra med kunskap inom många olika tekniska områden.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="root-part">
+        <h2 class="root-item skills-title">Expertområden</h2>
+        <div class="root-item">
+            <div class="skills-root">
+    <h4 class="skills-title">Roller</h4>
+    <div class="skills-text">
+        <span style="white-space: pre-wrap;">Systemarkitekt, Tech-lead, DevOps, Systemutvecklare, Databasutvecklare</span>
+    </div>
+</div>
+<div class="skills-root">
+    <h4 class="skills-title">Verktyg</h4>
+    <div class="skills-text">
+        <span style="white-space: pre-wrap;">AKS, Docker, Kubernetes, Docker Swarm, Visual Studio, IntelliJ IDEA, 
+SQL Server Management Studio, SQL Server Integration Services, Git, TFS, .Net Core/Framework, WPF, 
+ASP.NET MVC, Entity Framework, LINQ, JIRA, Bitbucket, Octupus deploy, TeamCity, Drone.io</span>
+    </div>
+</div>
+<div class="skills-root">
+    <h4 class="skills-title">Metoder</h4>
+    <div class="skills-text">
+        <span style="white-space: pre-wrap;">Agil utveckling, Scrum, SAFe</span>
+    </div>
+</div>
+<div class="skills-root">
+    <h4 class="skills-title">Programspråk</h4>
+    <div class="skills-text">
+        <span style="white-space: pre-wrap;">JavaScript, C#, Java, SQL</span>
+    </div>
+</div>
+<div class="skills-root">
+    <h4 class="skills-title">Databaser</h4>
+    <div class="skills-text">
+        <span style="white-space: pre-wrap;">SQL Server, MySql</span>
+    </div>
+</div>
+        </div>
+    </div>
+    <div class="root-part">
+    <div class="root-item">
+        <h2 class="experience-title">Urval av uppdrag</h2>
+        <div class="experience-root">
+  <div class="experience-title">
+    <h4 class="experience-title-item">TetraPak - Industrial Performance</h4>
+  </div>
+  <h5 class="experience-title-item">2019</h5>
+  <div class="experience-text">Fredrik har arbetat som systemarkitekt inom ett Agile Release Train (ART); Industrial Performance. ART:en består av två delar, Predictive Maintenance samt Global Cloud OEE, där Predictive Maintenance är en plattform som försöker förutse när det behöver göras reparationer eller underhåll av maskiner innan de går sönder genom att använda mätdata från fabriker. Global OEE är ett initiativ för att utveckla en global molnplattform för rapporter och dashboards med realtidsdata från fabriker. Fredrik har fått arbeta i SAFe och har fått gå kursen Leading SAFe 4.6. <br><br>Roll:<br>Systemarkitekt<br><br>Utbildning:<br>Leading SAFe 4.6</div>
+</div>
+<div class="experience-root">
+  <div class="experience-title">
+    <h4 class="experience-title-item">Munkeby Systems - GoAlive</h4>
+  </div>
+  <h5 class="experience-title-item">2019</h5>
+  <div class="experience-text">GoAlive är en webbapplikation utvecklad för GoAhead Norway som används för att sälja tågbiljetter. Applikationen består av en server skriven i C# samt en web-front-end skriven i JavaScript med Vue.js och TypeScript. Fredrik har arbetat som web-lead och har utvecklat web-appen från grunden samt har byggt upp ett continuous delivery-flöde i Azure DevOps med deployment i Azure Kubernetes Service. <br><br>Roll:<br>Tech-lead för webb<br>DevOpsutvecklare<br><br>Teknik:<br>JavaScript, Vue.js, Swagger, C#<br>Azure DevOps, Azure Kubernetes Service, Docker<br></div>
+</div>
+<div class="experience-root">
+  <div class="experience-title">
+    <h4 class="experience-title-item">Beijer Electronics - iX</h4>
+  </div>
+  <h5 class="experience-title-item">2018</h5>
+  <div class="experience-text">Beijer Electronics utvecklar och tillverkar styrutrustning till industrimaskiner. iX är en utvecklingsmiljö-applikation som används av Beijers kunder för att konfigurera den hårdvara de köper. Applikationen är skriven i C#. Fredrik har arbetat med utveckling av nya funktioner till applikationen, bland annat en server för säker filöverförng med SFTP.<br>Fredrik har även arbetat med att flytta över Beijers byggmiljö till att köras i Docker.<br><br>Roll:<br>Systemutvecklare<br><br>Teknik:<br>C#, WPF, Docker, Docker for Windows, SFTP, SSL</div>
+</div>
+<div class="experience-root">
+  <div class="experience-title">
+    <h4 class="experience-title-item">H&M - TAGS</h4>
+  </div>
+  <h5 class="experience-title-item">2016 - 2018</h5>
+  <div class="experience-text">TAGS är en intern applikation som genererar alla pris-taggar som hänger på koncernens kläder och andra produkter. Applikationen har utvecklats under många år och vidareutvecklas kontinuerligt för att möta nya krav. Programmet består av en server skriven i C# med SQL Server som databas samt en webb-frontend som är delvis skriven i Angular js samt Aspx. Fredrik har fått arbeta med alla delar av applikationen och även arbetat med automatisering av test och deployment m.h.a TeamCity och OctupusDeploy.<br><br>Roll:<br>Systemutvecklare<br><br>Teknik:<br>C#, SQL Server, Git, Linq, Angular js, Aspx, Entity Framework, Domain Driven Design, TeamCity, BitBucket, OctupusDeploy</div>
+</div>
+<div class="experience-root">
+  <div class="experience-title">
+    <h4 class="experience-title-item">Åklagarmyndighten - Cåbra</h4>
+  </div>
+  <h5 class="experience-title-item">2015 - 2016</h5>
+  <div class="experience-text">Åklagarmyndigheten har ett egenutvecklat ärendehanteringssystem som heter Cåbra. Cåbra används idag av myndighetens 1200 åklagare och administratörer för att automatisera ärendeprocessen, hantera dokument, tillhandahålla beslutsstöd och utbyta data med andra myndigheter enligt de lagar och regler som gäller för myndigheters informationsutbyte. Programmet utvecklades 2005 och har vidareutvecklats sedan dess. Det består av en Java-applikation med klient och server.  <br><br>I projektet har Fredrik arbetat med att vidareutveckla klientapplikationen och servern. Han har även haft huvudansvaret i utvecklingen av en ny inloggningsrutin med smarta kort och single-sign-on via Kerberos.<br><br>Roll:<br>Systemutvecklare<br><br>Teknik:<br>Java, IntelliJ IDEA, Swing, Oracle Db, JGoodies, Single sign-on med Kerberos, Subversion</div>
+</div>
+<div class="experience-root">
+  <div class="experience-title">
+    <h4 class="experience-title-item">Alfa Laval - IQW 5</h4>
+  </div>
+  <h5 class="experience-title-item">2014 – 2015</h5>
+  <div class="experience-text">Alfa Laval är en världsledande tillverkare av pumpar, ventiler, värmeväxlare och separatorer.<br><br>Alfa Laval har en produktkonfigurator, IQW, som stöder säljprocessen. Konfiguratorn matas med information från PDM-systemet Sensei. Programmet var skrivet i gammal teknik med en blandning av VB6 och .NET. För att kunna förbättra säljprocessen för företaget utvecklades en ny version av IQW skriven helt i C# med MVVM-mönstret.<br><br>Det nya IQW består av två applikationer. Den första är en konfigurator som säljare använder för att räkna ut vilka produkter som passar kundernas krav och hur mycket dessa skall kosta. Den andra är en administrations-applikation som används internt för att göra uppdateringar av data och priser. Då säljorganisationen har ett stort behov av att kunna arbeta offline valdes en arkitektur där varje klient har en egen databas. Många av säljarna arbetar i regioner där tillförlitlig anslutning till internet inte kan garanteras. I den nya lösningen paketeras istället en färdig databas hos administratörerna som laddas ned av klienterna när de har tillgång till <br>uppkoppling.<br><br>Fredrik har arbetat med att utveckla de två applikationerna där fokus låg på arbetet med administrationsdelen. Han har även varit central i designen av databasen samt haft ansvar för konverteringen av data från den gamla applikationen till den nya.<br><br>Roll:<br>Systemutvecklare<br><br>Teknik:<br>C#, Visual Studio 2015, SQL Server, Entity Framework, MVVM, WPF, Subversion, JIRA</div>
+</div>
+<div class="experience-root">
+  <div class="experience-title">
+    <h4 class="experience-title-item">Fastighetsbyrån - Datalager</h4>
+  </div>
+  <h5 class="experience-title-item">2014</h5>
+  <div class="experience-text">Fastighetsbyrån är Sveriges största fastighetsmäklare och är en franchiseorganisation med ca 240 kontor över hela landet.<br><br>Kunden har idag ett datalager som kontinuerligt vidareutvecklas. Man samlar in data om bland annat försäljningar, kunder och potentiella säljare. Informationen används för att skapa effektiva analyser av marknaden i realtid och för att kunna erbjuda mer kundanpassade och riktade erbjudanden. Därigenom kunna stärka säljprocessen.<br><br>Fredrik arbetade med att ta fram en plattform för att temporärt lagra slagningar mot lantmäteriet. Lantmäteriet tar betalt för varje anrop mot deras API och därför var det önskvärt för kunden att kunna spara den information som hämtats i tidigare antrop. För att kunna spara data skapade han en serverapplikation som hanterade anrop mot Lantmäteriets API och gav svar transparent mot slutanvändaren där svar kom antingen från cache eller från API.<br><br>Roll:<br>Systemutvecklare<br><br>Teknik:<br>C#, Visual Studio 2015, SQL Server, Entity Framework, TFS, JIRA</div>
+</div>
+<div class="experience-root">
+  <div class="experience-title">
+    <h4 class="experience-title-item">Alfa Laval/DeLaval - SenseiPDM</h4>
+  </div>
+  <h5 class="experience-title-item">2012 – 2014</h5>
+  <div class="experience-text">Sensei är ett PDM-system som används av Alfa Laval och DeLaval. Programmet underhåller de båda företagens produktkataloger och består av en klient skriven i C# och WPF, en äldre server skriven i J# och en databas i SQL Server.<br><br>Fredrik arbetade med att vidareutveckla produkten inklusive klientapplikationen och servern.<br><br>Roll:<br>Systemutvecklare<br><br>Teknik:<br>C#, WPF, MVVM, WCF, Visual Studio 2010/2005, SQL Server, Entity Framework, TFS, JIRA, J#</div>
+</div>
+<div class="experience-root">
+  <div class="experience-title">
+    <h4 class="experience-title-item">Stockholm Vatten - Tryggis</h4>
+  </div>
+  <h5 class="experience-title-item">2012</h5>
+  <div class="experience-text">Stockholm Vatten har ansvaret för tjänster som beskriver de geografiska lägena hos de ledningsnät som finns nedgrävda i Stockholm, t ex el, tele, vatten och gas.<br><br>På grund av ökade krav på säkerhet behövde Stockholm Vatten byta ut sitt dåvarande system för hantering av kartor. Därför utvecklades ett nytt, modernt system som uppfyllde de krav som ställdes gällande säkerhet. Det nya geografiska informationssystemet beskriver geografiska lägen av ledningsnät nedgrävda i Stockholm.<br><br>Fredrik utvecklade ett mallsystem för generering av PDF-dokument och e-post.<br><br>Roll:<br>Systemutvecklare<br><br>Teknik:<br>C#, WCF, ASP.NET MVC, Visual Studio 2010, SQL Server, Entity Framework, TFS</div>
+</div>
+    </div>
+</div>
+<div class="root-part">
+    <div class="root-item">
+        <h2 class="experience-title">Utbildning</h2>
+        <div class="experience-root">
+  <div class="experience-title">
+    <h4 class="experience-title-item">KTH - Civilingenjör Elektroteknik</h4>
+  </div>
+  <h5 class="experience-title-item">2004 - 2011</h5>
+  <div class="experience-text">270 hp vid Kungliga Tekniska Högskolan i Stockholm</div>
+</div>
+    </div>
+</div>
+<div class="root-part">
+    <div class="root-item">
+        <h2 class="experience-title">Engagemang och hobbyprojekt</h2>
+        <div class="experience-root">
+  <div class="experience-title">
+    <h4 class="experience-title-item">Swetugg - Föreläsning, Docker & Kubernetes</h4>
+  </div>
+  <h5 class="experience-title-item">Feb 2018</h5>
+  <div class="experience-text">Fredrik har ett stort intresse för DevOps, mer specifikt teknikerna Docker och Kubernetes. <br>Kubernetes är en orkestreringsplattform skapad av Google för att kunna hantera stora mängder <br>distribuerade mikrotjänster. För att testa ut och demonstrera tekniken har han byggt ett kluster <br>av 6st Raspberry Pi-datorer med Arm Linux. För att sprida denna kunskap har han hållit en <br>föreläsning på utvecklarkonferensen Swetugg i februari 2018.<br><br>Teknik:<br>Docker, Kubernetes, Linux</div>
+</div>
+<div class="experience-root">
+  <div class="experience-title">
+    <h4 class="experience-title-item">CV-webb</h4>
+  </div>
+  <h5 class="experience-title-item"></h5>
+  <div class="experience-text">Fredrik har byggt en CV-webb som används för att generera denna konsultprofil. Tanken är att demonstrera en fullständig full-stack, från frontend till deployment. Webben är byggd i Vue.js och använde GraphQL för att kommunicera med servern. Servern är byggd i C# och dotnet core. Databasen är NoSQL-databasen RethinkDb och hela siten körs i Docker på en Linux-maskin. Hela applikationen byggs och installeras automatiskt via CI-verktyget Drone.io.<br><br>Teknik:<br>Vue.js, Webpack, GraphQL, C#, Dotnet Core, RethinkDb, Drone.io, Docker<br><br>Webbsida:<br>https://resume.fredriklowenhamn.se/resume/UmVzdW1lOlc0TlhLOUFO</div>
+</div>
+    </div>
+</div>
+    <div class="root-part root-end">
+        <h2 class="root-item contact-title">Kontakta mig</h2>
+        <div class="root-item contact-part">
+            <div class="contact-root">
+  <div class="contact-text">
+    <a href="mailto:fredrik.lowenhamn@gmail.com">
+      <i class="fas fa-envelope"></i>
+      <span>fredrik.lowenhamn@gmail.com</span>
+    </a>
+  </div>
+</div>
+<div class="contact-root">
+  <div class="contact-text">
+      <i class="fas fa-phone"></i>
+      <span>+46706307579</span>
+  </div>
+</div>
+<div class="contact-root">
+  <div class="contact-text">
+      <i class="fab fa-facebook"></i>
+      <span>https://www.facebook.com/fredrik.lowenhamn</span>
+  </div>
+</div>
+<div class="contact-root">
+  <div class="contact-text">
+      <i class="fab fa-linkedin"></i>
+      <span>https://www.linkedin.com/in/fredrik-l%C3%B6wenhamn-44362435/</span>
+  </div>
+</div>
+<div class="contact-root">
+  <div class="contact-text">
+      <i class="fab fa-github"></i>
+      <span>https://github.com/lowet84/</span>
+  </div>
+</div>
+        </div>
+    </div>
+</body>
+
+</html>
