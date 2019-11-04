@@ -1,0 +1,18 @@
+version: '3'
+services:
+  code-server:
+    container_name: code-server
+    image: codercom/code-server
+    restart: always
+    networks:
+      - core
+    labels:
+      - traefik.port=8080
+      - traefik.frontend.rule=Host:code.${SERVER_DOMAIN}
+    command: --auth none
+    volumes:
+      - /root/docker-server:/home/coder/docker
+
+networks:
+  core:
+    external: true
