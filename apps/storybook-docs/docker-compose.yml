@@ -7,8 +7,9 @@ services:
     networks:
       - core
     labels:
-      - traefik.port=80
+      - traefik.port=8043
       - traefik.frontend.rule=Host:storybook.${SERVER_DOMAIN}
+      - com.centurylinklabs.watchtower.enable=true
 
 networks:
   core:
