@@ -1,11 +1,11 @@
-FROM phusion/baseimage
+FROM phusion/baseimage:master
 
-RUN add-apt-repository ppa:deluge-team/ppa \
+RUN add-apt-repository ppa:deluge-team/stable \
     && apt-get update \
     && apt-get install -y wget \
     && wget -O - https://swupdate.openvpn.net/repos/repo-public.gpg|apt-key add - \
     && apt-get update \
-    && apt-get install -y openvpn deluged deluge-web net-tools iptables
+    && apt-get install -y python3-libtorrent openvpn deluged deluge-web net-tools iptables
 
 RUN mkdir -p /vpn \ 
     && cp /etc/openvpn/update-resolv-conf /vpn
